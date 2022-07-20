@@ -1,6 +1,8 @@
 const clientLoader = require('./src/clientLoader');
 const commandLoader = require('./src/commandLoader');
 const MysqlConnector = require('./src/MySqlConnector');
+const dotenv = require('dotenv');
+dotenv.config();
 
 require('colors');
 
