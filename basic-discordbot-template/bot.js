@@ -25,7 +25,7 @@ clientLoader.createClient(['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'])
 
       if (client.commands.has(commandName)) {
         // La commande existe, on la lance
-        client.commands.get(commandName).run(client, message, arguments);
+        client.commands.get(commandName).run(client, message, arguments, MysqlConnector);
       } else {
         // La commande n'existe pas, on prévient l'utilisateur
         await message.delete();
