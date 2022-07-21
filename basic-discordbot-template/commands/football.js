@@ -6,8 +6,14 @@ const Discord = require('discord.js');
  * @param {Array<String>} arguments
  */
 module.exports.run = async (client, message, arguments, MySqlConnector) => {
-    const [query] = await MySqlConnector.executeQuery(`SELECT * FROM participants INNER JOIN sports ON participants.sportId = sports.id WHERE sports.name = "Football" ORDER BY participants.classement ASC LIMIT 3`)
-    message.channel.send(`Votre level : ${query.name}`);
+    //const [query] = await MySqlConnector.executeQuery(`SELECT * FROM participants INNER JOIN sports ON participants.sportId = sports.id WHERE sports.name = "Football" ORDER BY participants.classement ASC LIMIT 3`)
+    const [query1] = await MySqlConnector.executeQuery(`SELECT * FROM participants INNER JOIN sports ON participants.sportId = sports.id WHERE sports.name = "Football" and participants.classement = 1`)
+    const [query2] = await MySqlConnector.executeQuery(`SELECT * FROM participants INNER JOIN sports ON participants.sportId = sports.id WHERE sports.name = "Football" and participants.classement = 2`)
+    const [query3] = await MySqlConnector.executeQuery(`SELECT * FROM participants INNER JOIN sports ON participants.sportId = sports.id WHERE sports.name = "Football" and participants.classement = 3`)
+    message.channel.send(`1er au classement : ${query1.player} de ${query1.country}`);
+    message.channel.send(`2ème au classement : ${query2.player} de ${query2.country}`);
+    message.channel.send(`3ème au classement : ${query3.player} de ${query3.country}`);
+
 };
 
 module.exports.name = 'football';
